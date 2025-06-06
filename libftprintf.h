@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/05 17:27:39 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/06 14:54:59 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # include "libft.h"
 # include <stdarg.h>
 
+# define FLAG_SPEC		"-0.# +"
 # define CONVERT_SPEC	"cspdiuxX%"
 # define ALT_FORM		0b000001
 # define ZERO_PAD		0b000010
 # define LEFT_ALIGN		0b000100
-# define SPACE_PAD		0b001000
+# define ADD_SPACE		0b001000
 # define SHOW_SIGN		0b010000
 # define HAS_PREC		0b100000
 
@@ -32,7 +33,7 @@ typedef unsigned long long	t_ullong;
 
 typedef struct s_spec
 {
-	t_uint	flags;
+	t_uint	flag;
 	int		fdwidth;
 	int		precision;
 }							t_spec;
