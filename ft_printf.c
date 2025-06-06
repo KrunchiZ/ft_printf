@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:47:09 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/06 16:40:01 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/07 00:19:37 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	parse_flag(const char c, t_spec *mod)
 static int	check_spec(const char **format, va_list ap, int len)
 {
 	t_spec	mod;
+	t_fptr	pf;
 
 	while (ft_strchr(FLAG_SPEC, **format))
 		parse_flag(*(*format)++, &mod);
@@ -71,6 +72,8 @@ static int	check_spec(const char **format, va_list ap, int len)
 		mod.precision = ft_atoi(*format);
 	while (ft_isdigit(**format))
 		(*format)++;
+	if (ft_strchr(CONVERT_SPEC, **format))
+		pf = fetch_pf(*(*format)++);
 	return (len);
 }
 
