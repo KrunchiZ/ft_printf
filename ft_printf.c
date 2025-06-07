@@ -6,27 +6,27 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:47:09 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/07 15:02:27 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/07 18:13:38 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-/* Call the pf functions based on their respective conversion specifier.
+/* Calls the pf functions based on their respective conversion specifier.
  * */
 static t_fptr	fetch_pf(const char sp)
 {
 	t_fptr	list[256];
 
 	list['c'] = pf_char;
-	/*list['s'] = pf_string;
-	list['p'] = pf_ptr;
+	list['s'] = pf_string;
+	/*list['p'] = pf_ptr;
 	list['d'] = pf_int;
 	list['i'] = pf_int;
 	list['u'] = pf_uint;
 	list['x'] = pf_hexlower;
-	list['X'] = pf_hexupper;
-	list['%'] = pf_percent;*/
+	list['X'] = pf_hexupper;*/
+	list['%'] = pf_percent;
 	return (list[(int)sp]);
 }
 
@@ -35,7 +35,6 @@ static t_fptr	fetch_pf(const char sp)
  * */
 static void	parse_flag(const char c, t_spec *mod)
 {
-	mod->flag = 0;
 	if (c == '-')
 		mod->flag |= LEFT_ALIGN;
 	else if (c == '#')
@@ -50,8 +49,8 @@ static void	parse_flag(const char c, t_spec *mod)
 		mod->flag |= ADD_SPACE;
 	if (mod->flag & ADD_SPACE && mod->flag & SHOW_SIGN)
 		mod->flag &= ~ADD_SPACE;
-	if (mod->flag & ZERO_PAD &&
-		((mod->flag & LEFT_ALIGN) || (mod->flag & HAS_PREC)))
+	if (mod->flag & ZERO_PAD
+		&& ((mod->flag & LEFT_ALIGN) || (mod->flag & HAS_PREC)))
 		mod->flag &= ~ZERO_PAD;
 	return ;
 }
@@ -70,15 +69,17 @@ static void	parse_mod(const char **format, t_spec *mod)
 	while (ft_isdigit(**format))
 		(*format)++;
 	if (**format == '.')
+	{
 		parse_flag(*(*format)++, mod);
-	if (ft_isdigit(**format))
-		mod->precision = ft_atoi(*format);
-	while (ft_isdigit(**format))
-		(*format)++;
+		if (ft_isdigit(**format))
+			mod->precision = ft_atoi(*format);
+		while (ft_isdigit(**format))
+			(*format)++;
+	}
 	return ;
 }
 
-/* Iterate through format and parse the flags (FLAG_SPEC), fdwidth and
+/* Iterates through format and parse the flags (FLAG_SPEC), fdwidth and
  * precision into t_spec mod using parse_mod.
  *
  * If the following conversion specifier matches CONVERT_SPEC,
@@ -91,9 +92,10 @@ static int	init_pf(const char **format, va_list ap)
 {
 	t_spec		mod;
 	t_fptr		pf;
-	const char *start;
+	const char	*start;
 
 	start = *format;
+	mod = (t_spec){0};
 	parse_mod(format, &mod);
 	if (ft_strchr(CONVERT_SPEC, **format))
 	{
@@ -134,7 +136,7 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 		{
-			format++;//move past '%'
+			format++;
 			pf_len = init_pf(&format, ap);
 			if (pf_len < 0)
 				return (va_end(ap), -1);
