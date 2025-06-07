@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/07 11:46:50 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/07 15:00:21 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_spec
 
 typedef int					(*t_fptr)(va_list, t_spec);
 
+int	ft_printf(const char *format, ...);
 int	pf_char(va_list ap, t_spec mod);
 int	pf_string(va_list ap, t_spec mod);
 int	pf_ptr(va_list ap, t_spec mod);
