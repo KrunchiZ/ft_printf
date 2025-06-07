@@ -6,13 +6,14 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:47:09 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/07 00:19:37 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/07 11:46:49 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-/* call the pf functions based on their respective conversion specifier */
+/* Call the pf functions based on their respective conversion specifier.
+ * */
 static t_fptr	fetch_pf(const char sp)
 {
 	t_fptr	list[256];
@@ -55,50 +56,90 @@ static void	parse_flag(const char c, t_spec *mod)
 	return ;
 }
 
-static int	check_spec(const char **format, va_list ap, int len)
+/* Using parse_flag, iterate through format and turn on the corresponding
+ * bit of mod->flag according to FLAG_SPEC.
+ *
+ * fdwidth and precision will be parsed using ft_atoi.
+ * */
+static void	parse_mod(const char **format, t_spec *mod)
 {
-	t_spec	mod;
-	t_fptr	pf;
-
 	while (ft_strchr(FLAG_SPEC, **format))
-		parse_flag(*(*format)++, &mod);
+		parse_flag(*(*format)++, mod);
 	if (ft_isdigit(**format))
-		mod.fdwidth = ft_atoi(*format);
+		mod->fdwidth = ft_atoi(*format);
 	while (ft_isdigit(**format))
 		(*format)++;
 	if (**format == '.')
-		parse_flag(*(*format)++, &mod);
+		parse_flag(*(*format)++, mod);
 	if (ft_isdigit(**format))
-		mod.precision = ft_atoi(*format);
+		mod->precision = ft_atoi(*format);
 	while (ft_isdigit(**format))
 		(*format)++;
-	if (ft_strchr(CONVERT_SPEC, **format))
-		pf = fetch_pf(*(*format)++);
-	return (len);
+	return ;
 }
 
+/* Iterate through format and parse the flags (FLAG_SPEC), fdwidth and
+ * precision into t_spec mod using parse_mod.
+ *
+ * If the following conversion specifier matches CONVERT_SPEC,
+ * it is deemed valid and the corresponding pf_func. will be fetched to
+ * the func.ptr 'pf'.
+ *
+ * Invalid specifier will be treated as a normal string literal.
+ * */
+static int	init_pf(const char **format, va_list ap)
+{
+	t_spec		mod;
+	t_fptr		pf;
+	const char *start;
+
+	start = *format;
+	parse_mod(format, &mod);
+	if (ft_strchr(CONVERT_SPEC, **format))
+	{
+		pf = fetch_pf(*(*format)++);
+		return (pf(ap, mod));
+	}
+	write(STDOUT_FILENO, "%", 1);
+	*format = start;
+	return (1);
+}
+
+/* ft_printf iterates through format and write characters to stdout.
+ * When % is met, init_pf to parse the flags, fdwidth and precisions(if any)
+ * into a struct named t_spec.
+ * If specifier is invalid, % will be printed like a normal string literal.
+ *
+ * 'ap' will be the obj containing the variable argument list with
+ * a pointer pointing at the first argument.
+ * and will be accessed by the pf functions using va_arg macro.
+ *
+ * Total string length will be returned upon successful execution.
+ * On error, return (-1).
+ * */
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	int		len;
+	int		pf_len;
 
 	va_start(ap, format);
 	len = 0;
-	while (*format)
+	while (format && *format)
 	{
 		if (*format != '%')
 		{
-			write(STDIN_FILENO, format++, 1);
+			write(STDOUT_FILENO, format++, 1);
 			len++;
 		}
 		else
 		{
 			format++;//move past '%'
-			len = check_spec(&format, ap, len);
-			if (len < 0)
-				break ;
+			pf_len = init_pf(&format, ap);
+			if (pf_len < 0)
+				return (va_end(ap), -1);
+			len += pf_len;
 		}
 	}
-	va_end(ap);
-	return (len);
+	return (va_end(ap), len);
 }

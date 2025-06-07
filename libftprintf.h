@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/06 14:54:59 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/07 11:46:50 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ typedef struct s_spec
 
 typedef int					(*t_fptr)(va_list, t_spec);
 
-int	pf_char(va_list ap, t_spec mods);
-int	pf_string(va_list ap, t_spec mods);
-int	pf_ptr(va_list ap, t_spec mods);
-int	pf_int(va_list ap, t_spec mods);
-int	pf_uint(va_list ap, t_spec mods);
-int	pf_hexlower(va_list ap, t_spec mods);
-int	pf_hexupper(va_list ap, t_spec mods);
-int	pf_percent(va_list ap, t_spec mods);
+int	pf_char(va_list ap, t_spec mod);
+int	pf_string(va_list ap, t_spec mod);
+int	pf_ptr(va_list ap, t_spec mod);
+int	pf_int(va_list ap, t_spec mod);
+int	pf_uint(va_list ap, t_spec mod);
+int	pf_hexlower(va_list ap, t_spec mod);
+int	pf_hexupper(va_list ap, t_spec mod);
+int	pf_percent(va_list ap, t_spec mod);
 
 #endif
