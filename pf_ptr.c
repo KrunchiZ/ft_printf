@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/08 18:00:59 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/08 21:18:36 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	pf_ptr(va_list ap, t_spec mod)
 {
-	t_ullong	ptr;
+	t_ulong	ptr;
 
-	ptr = (t_ullong)va_arg(ap, void *);
+	ptr = (t_ulong)va_arg(ap, void *);
 }

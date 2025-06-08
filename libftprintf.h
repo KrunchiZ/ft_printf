@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/08 20:59:19 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/08 21:17:48 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 /* Shorthands for unsigned variable types */
 typedef unsigned char	t_uchar;
-typedef unsigned int	t_uint;
+typedef unsigned long	t_ulong;
 typedef long long		t_llong;
 
 typedef struct s_spec
