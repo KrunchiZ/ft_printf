@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/08 17:49:54 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/08 20:59:19 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # define HAS_PREC		0b100000
 
 /* Shorthands for unsigned variable types */
-typedef unsigned char		t_uchar;
-typedef unsigned long long	t_ullong;
-typedef long long			t_llong;
+typedef unsigned char	t_uchar;
+typedef unsigned int	t_uint;
+typedef long long		t_llong;
 
 typedef struct s_spec
 {
