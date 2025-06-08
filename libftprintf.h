@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/08 21:32:37 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/08 21:44:19 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@
 # define ADD_SPACE		0b001000
 # define SHOW_SIGN		0b010000
 # define HAS_PREC		0b100000
-
-/* Shorthands for unsigned variable types */
-typedef unsigned char	t_uchar;
-typedef unsigned int	t_uint;
-typedef long long		t_llong;
 
 typedef struct s_spec
 {
