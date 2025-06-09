@@ -6,11 +6,39 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 22:10:03 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/10 00:12:20 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+/* ft_strlen to determine the base system of base string.
+ * If base length is less than 2, base system is invalid, return NULL.
+ * Else, init_itoa_base.
+ * */
+static char	*pf_uitoa_base(t_ullong nbr, const char *base, size_t *len)
+{
+	size_t	base_len;
+	char	tmp[65];
+	int		depth;
+
+	base_len = ft_strlen(base);
+	depth = 64;
+	tmp[depth] = '\0';
+	tmp[63] = base[0];
+	if (nbr == 0)
+	{
+		*len = 1;
+		return (ft_strdup(&tmp[63]));
+	}
+	while (nbr)
+	{
+		tmp[--depth] = base[nbr % base_len];
+		nbr /= base_len;
+	}
+	*len = ft_strlen(&tmp[depth]);
+	return (ft_strdup(&tmp[depth]));
+}
 
 /* For digit strings, if precision > the s length, the front of the string
  * will be padded with zeroes.
