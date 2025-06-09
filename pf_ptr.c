@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/10 00:12:20 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/10 00:24:20 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * If base length is less than 2, base system is invalid, return NULL.
  * Else, init_itoa_base.
  * */
-static char	*pf_uitoa_base(t_ullong nbr, const char *base, size_t *len)
+static char	*uitoa_base(t_ullong nbr, const char *base, size_t *len)
 {
 	size_t	base_len;
 	char	tmp[65];
@@ -40,43 +40,18 @@ static char	*pf_uitoa_base(t_ullong nbr, const char *base, size_t *len)
 	return (ft_strdup(&tmp[depth]));
 }
 
-/* For digit strings, if precision > the s length, the front of the string
- * will be padded with zeroes.
- * New malloc string will be returned and s will be freed.
- * */
-static char	*init_precision(char *s, t_spec mod, size_t *len, int is_uphex)
-{
-	size_t	i;
-	size_t	j;
-	char	*host;
-
-	host = ft_calloc(*len + 1, sizeof(char));
-	if (!host)
-		return (free(s), NULL);
-	i = 0;
-	while ((mod.flag & HAS_PREC) && (i < (mod.precision - *len)))
-		host[i++] = '0';
-	j = 0;
-	while (i < mod.precision)
-		host[i++] = s[j++];
-	*len = mod.precision;
-	return (free(s), host);
-}
-
 static void	*parse_ptr(t_ulong ptr, t_spec *mod, size_t *len)
 {
 	char	*str;
 	int		is_uphex;
+	char	*host;
 
 	mod->flag |= ALT_FORM;
-	str = pf_uitoa_base(ptr, LOWER_HEX_BASE, len);
+	str = uitoa_base(ptr, LOWER_HEX_BASE, len);
+	if (!str)
+		return (NULL);
 	if (mod->precision < *len)
 		mod->precision = *len;
-	is_uphex = 0;
-	if (str)
-		str = init_precision(str, *mod, len, is_uphex);
-	if (NULL)
-		return (NULL);
 	return (str);
 }
 
