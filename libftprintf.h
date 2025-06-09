@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 17:28:35 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 18:05:34 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ int	pf_hexupper(va_list ap, t_spec mod);
 int	pf_percent(va_list ap, t_spec mod);
 
 /* Util functions */
-char	*init_precision(char *s, t_spec mod, size_t *len, int is_uphex);
 int		exec_pf_digit(char *str, size_t len, t_spec mod);
-char	*pf_uitoa_base(t_ullong nbr, const char *base);
+char	*pf_uitoa_base(t_ullong nbr, const char *base, size_t *len);
 
 #endif

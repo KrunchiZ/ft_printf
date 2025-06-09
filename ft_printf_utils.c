@@ -6,41 +6,41 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 14:57:43 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 18:47:22 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-/* For digit strings, if precision > the s length, the front of the string
- * will be padded with zeroes.
- * New malloc string will be returned and s will be freed.
+/* Prints digit string to stdout.
+ * If ZERO_PAD, print '0' instead of space for fdwidth.
+ * If fdwidth == len and ADD_SPACE is true, add a blank at the front.
  * */
-char	*init_precision(char *s, t_spec mod, size_t *len, int is_uphex)
+int	exec_pf_digit(char *str, size_t len, t_spec mod)
 {
-	size_t	i;
-	size_t	j;
-	char	*host;
+	char	*pad;
+	int		length;
 
-	if (mod.flag & ALT_FORM)
-		mod.precision += 2;
-	host = ft_calloc(mod.precision + 1, sizeof(char));
-	if (!host)
-		return (free(src), NULL);
-	i = 0;
-	if (mod.flag & ALT_FORM)
+	pad = " ";
+	length = (int)(mod.fdwidth);
+	if ((mod.flag & ADD_SPACE) && (mod.fdwidth == len))
 	{
-		if (is_uphex)
-			ft_strlcpy(host, "0X", 2);
-		else
-			ft_strlcpy(host, "0x", 2);
-		i += 2;
+		write(STDOUT_FILENO, pad, 1);
+		l += 1;
 	}
-	while (i < (mod.precision - *len))
-		host[i++] = '0';
-	j = 0;
-	while (i < mod.precision)
-		host[i++] = s[j++];
-	*len = mod.precision;
-	return (free(s), host);
+	if (mod.flag & ZERO_PAD)
+		pad = "0";
+	if (mod.flag & LEFT_ALIGN)
+	{
+		write(STDOUT_FILENO, str, len);
+		while ((mod.fdwidth--) > len)
+			write(STDOUT_FILENO, pad, 1);
+	}
+	else
+	{
+		while ((mod.fdwidth--) > len)
+			write(STDOUT_FILENO, pad, 1);
+		write(STDOUT_FILENO, str, len);
+	}
+	return (length);
 }

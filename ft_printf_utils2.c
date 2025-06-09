@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:53:30 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 17:27:10 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 17:55:19 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /* Convert unsigned long long integer to a new base system and
  * return it as a string.
  * */
-static char	*init_uitoa_base(t_ullong nbr, const char *base, size_t base_len)
+static char	*init_uitoa_base(t_ullong nbr, const char *base
+							 , size_t base_len, size_t *len)
 {
 	char	tmp[65];
 	int		depth;
@@ -24,12 +25,16 @@ static char	*init_uitoa_base(t_ullong nbr, const char *base, size_t base_len)
 	tmp[depth] = '\0';
 	tmp[63] = base[0];
 	if (nbr == 0)
+	{
+		*len = 1;
 		return (ft_strdup(&tmp[63]));
+	}
 	while (nbr)
 	{
 		tmp[--depth] = base[nbr % base_len];
 		nbr /= base_len;
 	}
+	*len = ft_strlen(&tmp[depth]);
 	return (ft_strdup(&tmp[depth]));
 }
 
@@ -57,12 +62,12 @@ static int	base_has_dup(const char *base)
  * If base length is less than 2, base system is invalid, return NULL.
  * Else, init_itoa_base.
  * */
-char	*pf_uitoa_base(t_ullong nbr, const char *base)
+char	*pf_uitoa_base(t_ullong nbr, const char *base, size_t *len)
 {
 	size_t	base_len;
 
 	base_len = ft_strlen(base);
 	if (base_len < 2 || base_has_dup(base))
 		return (NULL);
-	return (init_uitoa_base(nbr, base, base_len));
+	return (init_uitoa_base(nbr, base, base_len, len));
 }
