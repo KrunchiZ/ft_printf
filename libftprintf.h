@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 12:40:09 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 17:28:35 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define ADD_SPACE		0b001000
 # define SHOW_SIGN		0b010000
 # define HAS_PREC		0b100000
-
 # define LOWER_HEX_BASE	"0123456789abcdef"
 # define UPPER_HEX_BASE	"0123456789ABCDEF"
 
@@ -35,9 +34,13 @@ typedef struct s_spec
 	size_t	precision;
 }			t_spec;
 
+/* Function pointer to call the specifier functions */
 typedef int	(*t_fptr)(va_list, t_spec);
 
+/* Main Function */
 int	ft_printf(const char *format, ...);
+
+/* Functions for their respective conversion specifier */
 int	pf_char(va_list ap, t_spec mod);
 int	pf_string(va_list ap, t_spec mod);
 int	pf_ptr(va_list ap, t_spec mod);
@@ -46,5 +49,10 @@ int	pf_uint(va_list ap, t_spec mod);
 int	pf_hexlower(va_list ap, t_spec mod);
 int	pf_hexupper(va_list ap, t_spec mod);
 int	pf_percent(va_list ap, t_spec mod);
+
+/* Util functions */
+char	*init_precision(char *s, t_spec mod, size_t *len, int is_uphex);
+int		exec_pf_digit(char *str, size_t len, t_spec mod);
+char	*pf_uitoa_base(t_ullong nbr, const char *base);
 
 #endif
