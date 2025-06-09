@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 18:49:36 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 19:02:23 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*init_precision(char *s, t_spec mod, size_t *len, int is_uphex)
 		mod.precision += 2;
 	host = ft_calloc(mod.precision + 1, sizeof(char));
 	if (!host)
-		return (free(src), NULL);
+		return (free(s), NULL);
 	i = 0;
 	if (mod.flag & ALT_FORM)
 	{
@@ -52,11 +52,11 @@ static char	*init_precision(char *s, t_spec mod, size_t *len, int is_uphex)
  * */
 int	pf_ptr(va_list ap, t_spec mod)
 {
-	t_uint	ptr;
+	t_ulong	ptr;
 	char	*str;
 	size_t	len;
 
-	ptr = (t_uint)va_arg(ap, void *);
+	ptr = (t_ulong)va_arg(ap, void *);
 	len = 0;
 	if (!ptr && mod.fdwidth > 0)
 	{
@@ -70,7 +70,7 @@ int	pf_ptr(va_list ap, t_spec mod)
 		mod.flag |= ALT_FORM;
 		str = pf_uitoa_base(ptr, LOWER_HEX_BASE, &len);
 		if (str && (mod.flag & HAS_PREC) && mod.precision > len)
-			str = init_precision(str, mod, &len, 0);
+			str = init_precision(str, mod, &len, 1);
 	}
 	if (mod.fdwidth < len)
 		mod.fdwidth = len;
