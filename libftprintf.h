@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/08 21:44:19 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 10:35:42 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ typedef struct s_spec
 	t_uchar	flag;
 	int		fdwidth;
 	int		precision;
-}							t_spec;
+}			t_spec;
 
-typedef int					(*t_fptr)(va_list, t_spec);
+typedef int	(*t_fptr)(va_list, t_spec);
 
 int	ft_printf(const char *format, ...);
 int	pf_char(va_list ap, t_spec mod);
