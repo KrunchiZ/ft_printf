@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 14:53:30 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 17:55:19 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 18:53:16 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * return it as a string.
  * */
 static char	*init_uitoa_base(t_ullong nbr, const char *base
-							 , size_t base_len, size_t *len)
+							, size_t base_len, size_t *len)
 {
 	char	tmp[65];
 	int		depth;

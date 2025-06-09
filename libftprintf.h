@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 18:05:34 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 18:54:21 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ typedef struct s_spec
 typedef int	(*t_fptr)(va_list, t_spec);
 
 /* Main Function */
-int	ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
 
 /* Functions for their respective conversion specifier */
-int	pf_char(va_list ap, t_spec mod);
-int	pf_string(va_list ap, t_spec mod);
-int	pf_ptr(va_list ap, t_spec mod);
-int	pf_int(va_list ap, t_spec mod);
-int	pf_uint(va_list ap, t_spec mod);
-int	pf_hexlower(va_list ap, t_spec mod);
-int	pf_hexupper(va_list ap, t_spec mod);
-int	pf_percent(va_list ap, t_spec mod);
+int		pf_char(va_list ap, t_spec mod);
+int		pf_string(va_list ap, t_spec mod);
+int		pf_ptr(va_list ap, t_spec mod);
+int		pf_int(va_list ap, t_spec mod);
+int		pf_uint(va_list ap, t_spec mod);
+int		pf_hexlower(va_list ap, t_spec mod);
+int		pf_hexupper(va_list ap, t_spec mod);
+int		pf_percent(va_list ap, t_spec mod);
 
 /* Util functions */
 int		exec_pf_digit(char *str, size_t len, t_spec mod);
