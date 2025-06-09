@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 10:35:42 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 12:40:09 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@
 # define SHOW_SIGN		0b010000
 # define HAS_PREC		0b100000
 
+# define LOWER_HEX_BASE	"0123456789abcdef"
+# define UPPER_HEX_BASE	"0123456789ABCDEF"
+
 typedef struct s_spec
 {
 	t_uchar	flag;
-	int		fdwidth;
-	int		precision;
+	size_t	fdwidth;
+	size_t	precision;
 }			t_spec;
 
 typedef int	(*t_fptr)(va_list, t_spec);

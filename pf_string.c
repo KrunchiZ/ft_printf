@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 15:50:51 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/08 03:19:40 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 12:44:24 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static void	exec_pf_string(char *str, size_t len, t_spec mod)
 	if (mod.flag & LEFT_ALIGN)
 	{
 		write(STDOUT_FILENO, str, len);
-		while ((mod.fdwidth--) > (int)len)
+		while ((mod.fdwidth--) > len)
 			write(STDOUT_FILENO, " ", 1);
 	}
 	else
 	{
-		while ((mod.fdwidth--) > (int)len)
+		while ((mod.fdwidth--) > len)
 			write(STDOUT_FILENO, " ", 1);
 		write(STDOUT_FILENO, str, len);
 	}
@@ -52,10 +52,10 @@ int	pf_string(va_list ap, t_spec mod)
 	else if (!str)
 		str = "(null)";
 	len = ft_strlen(str);
-	if ((mod.flag & HAS_PREC) && mod.precision < (int)len)
+	if ((mod.flag & HAS_PREC) && mod.precision < len)
 		len = mod.precision;
-	if (mod.fdwidth < (int)len)
+	if (mod.fdwidth < len)
 		mod.fdwidth = len;
 	exec_pf_string(str, len, mod);
-	return (mod.fdwidth);
+	return ((int)(mod.fdwidth));
 }

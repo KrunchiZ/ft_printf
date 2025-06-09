@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:47:09 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 10:46:06 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/09 12:39:08 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ static void	parse_mod(const char **format, t_spec *mod)
 	while (ft_strchr(FLAG_SPEC, **format))
 		parse_flag(*(*format)++, mod);
 	if (ft_isdigit(**format))
-		mod->fdwidth = ft_atoi(*format);
+		mod->fdwidth = (size_t)ft_atoi(*format);
 	while (ft_isdigit(**format))
 		(*format)++;
 	if (**format == '.')
 	{
 		parse_flag(*(*format)++, mod);
 		if (ft_isdigit(**format))
-			mod->precision = ft_atoi(*format);
+			mod->precision = (size_t)ft_atoi(*format);
 		while (ft_isdigit(**format))
 			(*format)++;
 	}
