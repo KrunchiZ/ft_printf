@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 00:35:29 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 01:12:26 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*init_prec(char *str, t_spec *mod, size_t *len)
 	return (str);
 }
 
-static char	*parse_hex(t_ullong nb, t_spec *mod, size_t *len)
+static char	*parse_uint(t_ullong nb, t_spec *mod, size_t *len)
 {
 	char	*str;
 
@@ -63,10 +63,10 @@ int	pf_uint(va_list ap, t_spec mod)
 	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
 		str = ft_strdup("");
 	else
-		str = parse_hex(nb, &mod, &len);
+		str = parse_uint(nb, &mod, &len);
 	if (!str)
 		return (-1);
 	if (mod.fdwidth < len)
 		mod.fdwidth = len;
-	return (pf_digitstr(str, len, mod, 1));
+	return (pf_digitstr(str, len, mod, 0));
 }

@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 00:34:47 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 00:57:23 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ int	pf_hexlower(va_list ap, t_spec mod)
 	len = 0;
 	mod.flag &= (~SHOW_SIGN & ~ADD_SPACE);
 	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
+	{
 		str = ft_strdup("");
+		mod.flag &= LEFT_ALIGN;
+	}
 	else
 		str = parse_hex(nb, &mod, &len);
 	if (!str)

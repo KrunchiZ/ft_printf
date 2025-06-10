@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 00:47:31 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 01:09:04 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*init_prec(char *str, t_spec *mod, size_t *len)
 	return (str);
 }
 
-static char	*parse_hex(t_llong nb, t_spec *mod, size_t *len)
+static char	*parse_int(t_llong nb, t_spec *mod, size_t *len)
 {
 	char	*str;
 
@@ -44,8 +44,6 @@ static char	*parse_hex(t_llong nb, t_spec *mod, size_t *len)
 		if (!str)
 			return (NULL);
 	}
-	if (((mod->flag & SHOW_SIGN) && *str != '-') || (mod->flag & ADD_SPACE))
-		(*len)++;
 	return (str);
 }
 
@@ -65,9 +63,11 @@ int	pf_int(va_list ap, t_spec mod)
 	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
 		str = ft_strdup("");
 	else
-		str = parse_hex(nb, &mod, &len);
+		str = parse_int(nb, &mod, &len);
 	if (!str)
 		return (-1);
+	if (((mod.flag & SHOW_SIGN) && *str != '-') || (mod.flag & ADD_SPACE))
+		len++;
 	if (mod.fdwidth < len)
 		mod.fdwidth = len;
 	return (pf_digitstr(str, len, mod, 0));

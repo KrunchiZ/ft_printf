@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/10 16:36:42 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 01:10:11 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
  * */
 static void	pf_signspace(char *str, t_spec mod)
 {
-	if (((mod.flag & SHOW_SIGN) && *str != '-')
-		|| (mod.flag & ADD_SPACE))
+	if (((mod.flag & SHOW_SIGN) && *str != '-') || (mod.flag & ADD_SPACE))
 	{
 		if (mod.flag & SHOW_SIGN)
 			write(STDOUT_FILENO, "+", 1);
