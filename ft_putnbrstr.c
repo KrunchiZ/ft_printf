@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 01:18:40 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 02:58:25 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ static void	pf_spacepads(t_spec mod, size_t len)
 }
 
 /* Prints digit string to stdout.
- * If ZERO_PAD, print '0' instead of space for fdwidth.
- * If fdwidth == len and ADD_SPACE is true, add a blank at the front.
  * */
 int	ft_putnbrstr(char *str, size_t len, t_spec mod, int is_uphex)
 {
