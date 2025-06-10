@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/10 17:54:18 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/10 23:46:03 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ int	pf_hexlower(va_list ap, t_spec mod)
 	char		*str;
 	size_t		len;
 
-	nb = (t_ullong)va_arg(ap, void *);
+	nb = (t_ullong)va_arg(ap, t_uint);
 	len = 0;
+	mod.flag &= ~SHOW_SIGN;
 	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
 		str = ft_strdup("");
 	else
