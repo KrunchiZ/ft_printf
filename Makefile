@@ -37,9 +37,9 @@ bonus: $(LIBFT) $(BOBJS)
 
 $(LIBFT):
 	@echo "Making $(GREEN)$(LIBFT)$(WHITE)..."
-	@make -s -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT) $(NAME)
-	@echo "Moved and renamed $(LIBFT) -> ./$(NAME)"
+	@echo "Copied $(GREEN)$(LIBFT) $(WHITE)-> $(GREEN)./$(NAME)$(WHITE)."
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -51,7 +51,7 @@ fclean: clean
 
 clean:
 	@rm -f $(OBJS)
-	@make -s -C $(LIBFT_DIR) clean
+	@make -C $(LIBFT_DIR) clean
 	@echo "Removing libftprintf object files..."
 
 re: fclean all
