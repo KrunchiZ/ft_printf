@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/10 15:48:52 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 01:24:18 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ typedef int	(*t_fptr)(va_list, t_spec);
 /* Main Function */
 int		ft_printf(const char *format, ...);
 
-/* Functions for their respective conversion specifier */
+/* Util Function */
+int		ft_putnbrstr(char *str, size_t len, t_spec mod, int is_uphex);
+
+/* To be called by t_fptr. */
+/* Functions for their respective conversion specifier. */
 int		pf_char(va_list ap, t_spec mod);
 int		pf_string(va_list ap, t_spec mod);
 int		pf_ptr(va_list ap, t_spec mod);
@@ -49,8 +53,5 @@ int		pf_uint(va_list ap, t_spec mod);
 int		pf_hexlower(va_list ap, t_spec mod);
 int		pf_hexupper(va_list ap, t_spec mod);
 int		pf_percent(va_list ap, t_spec mod);
-
-/* Util functions */
-int	pf_digitstr(char *str, size_t len, t_spec mod, int is_uphex);
 
 #endif

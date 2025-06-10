@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 00:57:23 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 01:25:17 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ int	pf_hexlower(va_list ap, t_spec mod)
 		return (-1);
 	if (mod.fdwidth < len)
 		mod.fdwidth = len;
-	return (pf_digitstr(str, len, mod, 0));
+	return (ft_putnbrstr(str, len, mod, 0));
 }
