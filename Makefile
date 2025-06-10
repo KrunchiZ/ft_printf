@@ -39,7 +39,7 @@ $(LIBFT):
 	@echo "Making $(GREEN)$(LIBFT)$(WHITE)..."
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT) $(NAME)
-	@echo "Copied $(GREEN)$(LIBFT) $(WHITE)-> $(GREEN)./$(NAME)$(WHITE)."
+	@echo "Copying $(GREEN)$(LIBFT)$(WHITE) -> $(GREEN)./$(NAME)$(WHITE)."
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
