@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 00:05:39 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 00:24:25 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,13 @@ static char	*parse_hex(t_ullong nb, t_spec *mod, size_t *len)
 		if (!str)
 			return (NULL);
 	}
-	if (((mod->flag & SHOW_SIGN) && *str != '-') || (mod->flag & ADD_SPACE))
-		(*len)++;
 	if (mod->flag & ALT_FORM)
 		*len += 2;
 	return (str);
 }
 
 /* Prints unsigned hexadecimal in uppercases.
- * SHOW_SIGN is ignored.
+ * SHOW_SIGN and ADD_SPACE are ignored.
  * Prints nothing if both nb and precision are 0.
  * */
 int	pf_hexupper(va_list ap, t_spec mod)
@@ -63,7 +61,7 @@ int	pf_hexupper(va_list ap, t_spec mod)
 
 	nb = (t_ullong)va_arg(ap, t_uint);
 	len = 0;
-	mod.flag &= ~SHOW_SIGN;
+	mod.flag &= (~SHOW_SIGN & ~ADD_SPACE);
 	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
 		str = ft_strdup("");
 	else

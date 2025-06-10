@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:47:09 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 00:03:26 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 00:10:48 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static t_fptr	fetch_pf(const char sp)
 	list['s'] = pf_string;
 	list['p'] = pf_ptr;
 	/*list['d'] = pf_int;
-	list['i'] = pf_int;
-	list['u'] = pf_uint;*/
+	list['i'] = pf_int;*/
+	list['u'] = pf_uint;
 	list['x'] = pf_hexlower;
 	list['X'] = pf_hexupper;
 	list['%'] = pf_percent;

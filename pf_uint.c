@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_lowerhex.c                                      :+:      :+:    :+:   */
+/*   pf_uint.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 00:23:43 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 00:25:38 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*parse_hex(t_ullong nb, t_spec *mod, size_t *len)
 {
 	char	*str;
 
-	str = ft_uitoa_base(nb, LOWER_HEX_BASE);
+	str = ft_uitoa(nb);
 	if (!str)
 		return (NULL);
 	*len = ft_strlen(str);
@@ -44,16 +44,14 @@ static char	*parse_hex(t_ullong nb, t_spec *mod, size_t *len)
 		if (!str)
 			return (NULL);
 	}
-	if (mod->flag & ALT_FORM)
-		*len += 2;
 	return (str);
 }
 
-/* Prints unsigned hexadecimal in lowercases.
- * SHOW_SIGN and ADD_SPACE are ignored.
+/* Prints unsigned integer to stdout.
+ * SHOW_SIGN, ADD_SPACE and ALT_FORM are ignored.
  * Prints nothing if both nb and precision are 0.
  * */
-int	pf_hexlower(va_list ap, t_spec mod)
+int	pf_uint(va_list ap, t_spec mod)
 {
 	t_ullong	nb;
 	char		*str;
@@ -61,7 +59,7 @@ int	pf_hexlower(va_list ap, t_spec mod)
 
 	nb = (t_ullong)va_arg(ap, t_uint);
 	len = 0;
-	mod.flag &= (~SHOW_SIGN & ~ADD_SPACE);
+	mod.flag &= (~SHOW_SIGN & ~ADD_SPACE & ~ALT_FORM);
 	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
 		str = ft_strdup("");
 	else
@@ -70,5 +68,5 @@ int	pf_hexlower(va_list ap, t_spec mod)
 		return (-1);
 	if (mod.fdwidth < len)
 		mod.fdwidth = len;
-	return (pf_digitstr(str, len, mod, 0));
+	return (pf_digitstr(str, len, mod, 1));
 }
