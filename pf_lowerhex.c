@@ -1,0 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_lowerhex.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
+/*   Updated: 2025/06/10 17:54:18 by kchiang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libftprintf.h"
+
+static char *init_prec(char *str, t_spec *mod, size_t *len)
+{
+	char	*tmp;
+
+	tmp = ft_calloc((mod->precision) + 1, sizeof(char));
+	if (!tmp)
+		return (NULL);
+	while (*len < (mod->precision))
+	{
+		ft_strlcat(tmp, "0", mod->precision + 1);
+		(*len)++;
+	}
+	ft_strlcat(tmp, str, mod->precision + 1);
+	free(str);
+	str = tmp;
+	return (str);
+}
+
+static char	*parse_hex(t_ullong nb, t_spec *mod, size_t *len)
+{
+	char	*str;
+
+	str = ft_uitoa_base(nb, LOWER_HEX_BASE);
+	if (!str)
+		return (NULL);
+	*len = ft_strlen(str);
+	if ((mod->flag & HAS_PREC) && (mod->precision > *len))
+	{
+		str = init_prec(str, mod, len);
+		if (!str)
+			return (NULL);
+	}
+	if (((mod->flag & SHOW_SIGN) && *str != '-') || (mod->flag & ADD_SPACE))
+		(*len)++;
+	if (mod->flag & ALT_FORM)
+		*len += 2;
+	return (str);
+}
+
+/* Prints unsigned hexadecimal in lowercases.
+ *
+ * Prints nothing if ptr is NULL and precision is 0.
+ * Else, print (nil) for NULL.
+ * */
+int	pf_hexlower(va_list ap, t_spec mod)
+{
+	t_ullong	nb;
+	char		*str;
+	size_t		len;
+
+	nb = (t_ullong)va_arg(ap, void *);
+	len = 0;
+	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
+		str = ft_strdup("");
+	else
+		str = parse_hex(nb, &mod, &len);
+	if (!str)
+		return (-1);
+	if (mod.fdwidth < len)
+		mod.fdwidth = len;
+	return (pf_digitstr(str, len, mod, 0));
+}
