@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/10 13:31:17 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:03:07 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static void	*parse_ptr(t_ulong ptr, t_spec *mod, size_t *len)
 		free(str);
 		str = tmp;
 	}
+	if (((mod->flag & SHOW_SIGN) && *str != '-')
+		|| (mod->flag & ADD_SPACE))
+		(*len)++;
+	if (mod->flag & ALT_FORM)
+		*len += 2;
 	return (str);
 }
 
@@ -53,12 +58,13 @@ int	pf_ptr(va_list ap, t_spec mod)
 	{
 		str = ft_strdup("(nil)");
 		len = 5;
+		mod.flag &= LEFT_ALIGN;
 	}
-	else if (!ptr && mod.fdwidth == 0)
-		str = ft_strdup("");
 	else
 		str = parse_ptr(ptr, &mod, &len);
 	if (!str)
 		return (-1);
+	if (mod.fdwidth < len)
+		mod.fdwidth = len;
 	return (pf_digitstr(str, len, mod, 0));
 }
