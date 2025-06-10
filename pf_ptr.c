@@ -6,16 +6,33 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/10 16:03:07 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:36:46 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	*parse_ptr(t_ulong ptr, t_spec *mod, size_t *len)
+static char *init_prec(char *str, t_spec *mod, size_t *len)
+{
+	char	*tmp;
+
+	tmp = ft_calloc((mod->precision) + 1, sizeof(char));
+	if (!tmp)
+		return (NULL);
+	while (*len < (mod->precision))
+	{
+		ft_strlcat(tmp, "0", mod->precision + 1);
+		(*len)++;
+	}
+	ft_strlcat(tmp, str, mod->precision + 1);
+	free(str);
+	str = tmp;
+	return (str);
+}
+
+static char	*parse_ptr(t_ulong ptr, t_spec *mod, size_t *len)
 {
 	char	*str;
-	char	*tmp;
 
 	mod->flag |= ALT_FORM;
 	str = ft_uitoa_base(ptr, LOWER_HEX_BASE);
@@ -24,17 +41,11 @@ static void	*parse_ptr(t_ulong ptr, t_spec *mod, size_t *len)
 	*len = ft_strlen(str);
 	if ((mod->flag & HAS_PREC) && (mod->precision > *len))
 	{
-		tmp = ft_calloc((mod->precision) + 1, sizeof(char));
-		if (!tmp)
+		str = init_prec(str, mod, len);
+		if (!str)
 			return (NULL);
-		while ((*len)++ < (mod->precision))
-			ft_strlcat(tmp, "0", mod->precision + 1);
-		ft_strlcat(tmp, str, mod->precision + 1);
-		free(str);
-		str = tmp;
 	}
-	if (((mod->flag & SHOW_SIGN) && *str != '-')
-		|| (mod->flag & ADD_SPACE))
+	if (((mod->flag & SHOW_SIGN) && *str != '-') || (mod->flag & ADD_SPACE))
 		(*len)++;
 	if (mod->flag & ALT_FORM)
 		*len += 2;

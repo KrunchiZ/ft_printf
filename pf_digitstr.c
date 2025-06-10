@@ -6,12 +6,14 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/10 16:17:06 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/10 16:36:42 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
+/* Write a blank space or positive sign depending on the '+' or ' ' flag.
+ * */
 static void	pf_signspace(char *str, t_spec mod)
 {
 	if (((mod.flag & SHOW_SIGN) && *str != '-')
@@ -25,7 +27,9 @@ static void	pf_signspace(char *str, t_spec mod)
 	return ;
 }
 
-static void	pf_prefix(t_spec mod, int is_uphex)
+/* Write 0x or 0X for hexadecimal digits if there is '#' flag.
+ * */
+static void	pf_altform(t_spec mod, int is_uphex)
 {
 	if (mod.flag & ALT_FORM)
 	{
@@ -37,6 +41,8 @@ static void	pf_prefix(t_spec mod, int is_uphex)
 	return ;
 }
 
+/* Zero paddings for field width if there is '0' flag.
+ * */
 static void	pf_zeropads(t_spec mod, size_t len)
 {
 	if (mod.flag & ZERO_PAD)
@@ -47,6 +53,8 @@ static void	pf_zeropads(t_spec mod, size_t len)
 	return ;
 }
 
+/* Normal space padding for field width.
+ * */
 static void	pf_spacepads(t_spec mod, size_t len)
 {
 	if (!(mod.flag & ZERO_PAD))
@@ -66,7 +74,7 @@ int	pf_digitstr(char *str, size_t len, t_spec mod, int is_uphex)
 	if (mod.flag & LEFT_ALIGN)
 	{
 		pf_signspace(str, mod);
-		pf_prefix(mod, is_uphex);
+		pf_altform(mod, is_uphex);
 		pf_zeropads(mod, len);
 		ft_putstr_fd(str, STDOUT_FILENO);
 		pf_spacepads(mod, len);
@@ -75,7 +83,7 @@ int	pf_digitstr(char *str, size_t len, t_spec mod, int is_uphex)
 	{
 		pf_spacepads(mod, len);
 		pf_signspace(str, mod);
-		pf_prefix(mod, is_uphex);
+		pf_altform(mod, is_uphex);
 		pf_zeropads(mod, len);
 		ft_putstr_fd(str, STDOUT_FILENO);
 	}
