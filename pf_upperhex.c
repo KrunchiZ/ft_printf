@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_lowerhex.c                                      :+:      :+:    :+:   */
+/*   pf_upperhex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 00:06:05 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 00:05:39 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*parse_hex(t_ullong nb, t_spec *mod, size_t *len)
 {
 	char	*str;
 
-	str = ft_uitoa_base(nb, LOWER_HEX_BASE);
+	str = ft_uitoa_base(nb, UPPER_HEX_BASE);
 	if (!str)
 		return (NULL);
 	*len = ft_strlen(str);
@@ -51,11 +51,11 @@ static char	*parse_hex(t_ullong nb, t_spec *mod, size_t *len)
 	return (str);
 }
 
-/* Prints unsigned hexadecimal in lowercases.
+/* Prints unsigned hexadecimal in uppercases.
  * SHOW_SIGN is ignored.
  * Prints nothing if both nb and precision are 0.
  * */
-int	pf_hexlower(va_list ap, t_spec mod)
+int	pf_hexupper(va_list ap, t_spec mod)
 {
 	t_ullong	nb;
 	char		*str;
@@ -72,5 +72,5 @@ int	pf_hexlower(va_list ap, t_spec mod)
 		return (-1);
 	if (mod.fdwidth < len)
 		mod.fdwidth = len;
-	return (pf_digitstr(str, len, mod, 0));
+	return (pf_digitstr(str, len, mod, 1));
 }
