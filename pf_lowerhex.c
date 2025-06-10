@@ -6,13 +6,13 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 00:23:43 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 00:34:47 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static char *init_prec(char *str, t_spec *mod, size_t *len)
+static char	*init_prec(char *str, t_spec *mod, size_t *len)
 {
 	char	*tmp;
 
