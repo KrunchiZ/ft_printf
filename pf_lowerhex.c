@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 01:25:17 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 01:33:21 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*parse_hex(t_ullong nb, t_spec *mod, size_t *len)
  * SHOW_SIGN and ADD_SPACE are ignored.
  * Prints nothing if both nb and precision are 0.
  * */
-int	pf_hexlower(va_list ap, t_spec mod)
+int	pf_lowerhex(va_list ap, t_spec mod)
 {
 	t_ullong	nb;
 	char		*str;

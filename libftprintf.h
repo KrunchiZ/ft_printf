@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 01:24:18 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 01:32:47 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int		pf_string(va_list ap, t_spec mod);
 int		pf_ptr(va_list ap, t_spec mod);
 int		pf_int(va_list ap, t_spec mod);
 int		pf_uint(va_list ap, t_spec mod);
-int		pf_hexlower(va_list ap, t_spec mod);
-int		pf_hexupper(va_list ap, t_spec mod);
+int		pf_lowerhex(va_list ap, t_spec mod);
+int		pf_upperhex(va_list ap, t_spec mod);
 int		pf_percent(va_list ap, t_spec mod);
 
 #endif
