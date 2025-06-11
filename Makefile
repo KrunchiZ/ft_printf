@@ -3,8 +3,7 @@ LIBFT_DIR	:= libft
 LIBFT		:= $(LIBFT_DIR)/libft.a
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -I$(LIBFT_DIR)
-
+CFLAGS := -Wall -Wextra -Werror
 SRCS := \
 		pf_char.c	pf_string.c		pf_int.c		pf_uint.c		\
 		pf_ptr.c	pf_lowerhex.c	pf_upperhex.c	pf_percent.c	\
@@ -42,7 +41,7 @@ $(LIBFT):
 	@echo "Copying $(GREEN)$(LIBFT)$(WHITE) -> $(GREEN)./$(NAME)$(WHITE)."
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
 	@echo "Compiling $(CYAN)$@$(WHITE)..."
 
 fclean: clean
