@@ -55,7 +55,7 @@ clean:
 
 re: fclean all
 
-# Uncomment below code to copy bonus files from 
-copybonus: $(BSRCS)
-%_bonus.c: %.c
-	cp $< $@
+# Uncomment code below to create bonus files
+#copybonus: $(BSRCS)
+#%_bonus.c: %.c
+#	cp $< $@
