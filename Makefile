@@ -55,3 +55,8 @@ clean:
 	@echo "Removing libftprintf object files..."
 
 re: fclean all
+
+# Uncomment below code to copy bonus files from 
+#copybonus: $(BSRCS)
+#%_bonus.c: %.c
+#	cp $< $@

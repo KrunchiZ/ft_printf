@@ -6,11 +6,12 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 13:55:14 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/07 15:35:46 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 16:44:43 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include "libft.h"
 
 /* Convert int/char as unsigned char and print.
  * All flags and precision will be ignored except left align and
