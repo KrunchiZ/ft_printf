@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:47:09 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 15:42:33 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 16:23:40 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static int	init_pf(const char **format, va_list ap)
 	const char	*start;
 
 	start = *format;
-	mod = (t_spec){.precision = 0};
+	mod = (t_spec){0};
 	parse_mod(format, &mod);
 	if (ft_strchr(CONVERT_SPEC, **format))
 	{
