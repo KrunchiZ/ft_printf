@@ -50,8 +50,8 @@ fclean: clean
 	@echo "Removing library files..."
 
 clean:
-	@rm -f $(OBJS)
 	@make -C $(LIBFT_DIR) clean
+	@rm -f $(OBJS) $(BOBJS)
 	@echo "Removing libftprintf object files..."
 
 re: fclean all
