@@ -6,12 +6,11 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 15:41:11 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 16:47:11 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 17:35:07 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "libft.h"
 
 /* Print '%' to stdout ignoring all fags, fdwidth and precision.
  * */

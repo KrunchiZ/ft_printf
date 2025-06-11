@@ -6,12 +6,11 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 16:44:51 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 17:34:13 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "libft.h"
 
 /* Write a blank space or positive sign depending on the '+' or ' ' flag.
  * */
