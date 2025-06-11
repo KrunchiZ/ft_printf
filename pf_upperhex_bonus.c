@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 18:38:56 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 19:25:19 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	pf_upperhex(va_list ap, t_spec mod)
 	len = 0;
 	mod.is_uphex = 1;
 	mod.flag &= (~SHOW_SIGN & ~ADD_SPACE);
+	if (!nb)
+		mod.flag &= ~ALT_FORM;
 	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
 	{
 		str = ft_strdup("");
