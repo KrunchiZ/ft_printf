@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 19:12:05 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 19:18:40 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* Write a blank space or positive sign depending on the '+' or ' ' flag.
  * */
-static void	pf_signspace(char *str, t_spec mod)
+static void	pf_signspace(t_spec mod)
 {
 	if (mod.flag & ADD_SPACE)
 		write(STDOUT_FILENO, " ", 1);
@@ -69,7 +69,7 @@ int	ft_putnbrstr(char *str, int len, t_spec mod)
 {
 	if (mod.flag & LEFT_ALIGN)
 	{
-		pf_signspace(str, mod);
+		pf_signspace(mod);
 		pf_altform(mod);
 		pf_zeropads(mod, len);
 		ft_putstr_fd(str, STDOUT_FILENO);
@@ -78,7 +78,7 @@ int	ft_putnbrstr(char *str, int len, t_spec mod)
 	else
 	{
 		pf_spacepads(mod, len);
-		pf_signspace(str, mod);
+		pf_signspace(mod);
 		pf_altform(mod);
 		pf_zeropads(mod, len);
 		ft_putstr_fd(str, STDOUT_FILENO);
