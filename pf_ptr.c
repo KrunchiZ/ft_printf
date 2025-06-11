@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 18:39:29 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 18:48:49 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ static char	*parse_ptr(t_ulong ptr, t_spec *mod, int *len)
 	char	*str;
 
 	mod->flag |= ALT_FORM;
-	if (nb < 0)
-	{
-		mod->is_neg = 1;
-		nb = -nb;
-	}
 	str = ft_uitoa_base(ptr, LOWER_HEX_BASE);
 	if (!str)
 		return (NULL);

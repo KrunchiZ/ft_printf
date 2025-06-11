@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 18:45:43 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 18:49:37 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	pf_spacepads(t_spec mod, int len)
 
 /* Prints digit string to stdout.
  * */
-int	ft_putnbrstr(char *str, int len, t_spec mod, int is_uphex)
+int	ft_putnbrstr(char *str, int len, t_spec mod)
 {
 	if (mod.flag & LEFT_ALIGN)
 	{
