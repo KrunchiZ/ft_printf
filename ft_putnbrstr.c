@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 18:30:16 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 18:45:43 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_putnbrstr(char *str, int len, t_spec mod, int is_uphex)
 	if (mod.flag & LEFT_ALIGN)
 	{
 		pf_signspace(str, mod);
-		pf_altform(mod, is_uphex);
+		pf_altform(mod);
 		pf_zeropads(mod, len);
 		ft_putstr_fd(str, STDOUT_FILENO);
 		pf_spacepads(mod, len);
@@ -82,7 +82,7 @@ int	ft_putnbrstr(char *str, int len, t_spec mod, int is_uphex)
 	{
 		pf_spacepads(mod, len);
 		pf_signspace(str, mod);
-		pf_altform(mod, is_uphex);
+		pf_altform(mod);
 		pf_zeropads(mod, len);
 		ft_putstr_fd(str, STDOUT_FILENO);
 	}
