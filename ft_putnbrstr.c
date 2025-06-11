@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 17:34:13 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 18:30:16 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
  * */
 static void	pf_signspace(char *str, t_spec mod)
 {
-	if (((mod.flag & SHOW_SIGN) && *str != '-') || (mod.flag & ADD_SPACE))
+	if ((mod.flag & SHOW_SIGN) || (mod.flag & ADD_SPACE))
 	{
-		if (mod.flag & SHOW_SIGN)
+		if (mod.is_neg)
+			write(STDOUT_FILENO, "-", 1);
+		else if (!(mod.is_neg))
 			write(STDOUT_FILENO, "+", 1);
 		else
 			write(STDOUT_FILENO, " ", 1);
@@ -28,11 +30,11 @@ static void	pf_signspace(char *str, t_spec mod)
 
 /* Write 0x or 0X for hexadecimal digits if there is '#' flag.
  * */
-static void	pf_altform(t_spec mod, int is_uphex)
+static void	pf_altform(t_spec mod)
 {
 	if (mod.flag & ALT_FORM)
 	{
-		if (is_uphex)
+		if (mod.is_uphex)
 			write(STDOUT_FILENO, "0X", 2);
 		else
 			write(STDOUT_FILENO, "0x", 2);

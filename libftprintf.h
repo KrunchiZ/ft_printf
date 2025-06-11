@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 18:06:13 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 18:27:53 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_spec
 	t_uchar	flag;
 	int		fdwidth;
 	int		precision;
+	int		is_neg;
+	int		is_uphex;
 }			t_spec;
 
 /* Function pointer to call the specifier functions */
@@ -41,7 +43,7 @@ typedef int	(*t_fptr)(va_list, t_spec);
 int		ft_printf(const char *format, ...);
 
 /* Util Function */
-int		ft_putnbrstr(char *str, int len, t_spec mod, int is_uphex);
+int		ft_putnbrstr(char *str, int len, t_spec mod);
 
 /* To be called by t_fptr. */
 /* Functions for their respective conversion specifier. */
