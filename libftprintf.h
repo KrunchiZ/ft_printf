@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 12:46:43 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 18:06:13 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <stdarg.h>
 
-# define FLAG_SPEC		"-0.# +"
+# define FLAG_SPEC		"-0# +"
 # define CONVERT_SPEC	"cspdiuxX%"
 # define ALT_FORM		0b000001
 # define ZERO_PAD		0b000010
