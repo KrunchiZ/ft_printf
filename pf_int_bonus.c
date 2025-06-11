@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 18:47:53 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 19:01:04 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static char	*parse_int(t_llong nb, t_spec *mod, int *len)
 		if (!str)
 			return (NULL);
 	}
+	if (mod->is_neg)
+		(*len)++;
 	return (str);
 }
 
@@ -71,7 +73,7 @@ int	pf_int(va_list ap, t_spec mod)
 		str = parse_int(nb, &mod, &len);
 	if (!str)
 		return (-1);
-	if ((mod.flag & SHOW_SIGN) || (mod.flag & ADD_SPACE))
+	if (((mod.flag & SHOW_SIGN) && !(mod.is_neg)) || (mod.flag & ADD_SPACE))
 		len++;
 	if (mod.fdwidth < len)
 		mod.fdwidth = len;
