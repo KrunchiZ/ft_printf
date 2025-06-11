@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 17:35:14 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 17:45:30 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	pf_ptr(va_list ap, t_spec mod)
 
 	ptr = (t_ulong)va_arg(ap, void *);
 	len = 0;
-	if (!ptr && mod.fdwidth > 0)
+	if (!ptr)
 	{
 		str = ft_strdup("(nil)");
 		len = 5;
