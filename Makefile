@@ -1,6 +1,6 @@
 NAME		:= libftprintf.a
 LIBFT_DIR	:= libft
-LIBFT		:= $(addprefix $(LIBFT_DIR)/,libft.a)
+LIBFT		:= $(LIBFT_DIR)/libft.a
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror -I$(LIBFT_DIR)
