@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:47:09 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 12:24:18 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:42:33 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ static void	parse_mod(const char **format, t_spec *mod)
 		parse_flag(*(*format)++, mod);
 		if (ft_isdigit(**format))
 			mod->precision = (int)ft_atoi(*format);
-		else
-			mod->precision = 0;
 		while (ft_isdigit(**format))
 			(*format)++;
 	}
@@ -97,7 +95,7 @@ static int	init_pf(const char **format, va_list ap)
 	const char	*start;
 
 	start = *format;
-	mod = (t_spec){.precision = 1};
+	mod = (t_spec){.precision = 0};
 	parse_mod(format, &mod);
 	if (ft_strchr(CONVERT_SPEC, **format))
 	{
