@@ -6,13 +6,13 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 01:25:50 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:32:31 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static char	*init_prec(char *str, t_spec *mod, size_t *len)
+static char	*init_prec(char *str, t_spec *mod, int *len)
 {
 	char	*tmp;
 
@@ -30,7 +30,7 @@ static char	*init_prec(char *str, t_spec *mod, size_t *len)
 	return (str);
 }
 
-static char	*parse_ptr(t_ulong ptr, t_spec *mod, size_t *len)
+static char	*parse_ptr(t_ulong ptr, t_spec *mod, int *len)
 {
 	char	*str;
 
@@ -38,7 +38,7 @@ static char	*parse_ptr(t_ulong ptr, t_spec *mod, size_t *len)
 	str = ft_uitoa_base(ptr, LOWER_HEX_BASE);
 	if (!str)
 		return (NULL);
-	*len = ft_strlen(str);
+	*len = (int)ft_strlen(str);
 	if ((mod->flag & HAS_PREC) && (mod->precision > *len))
 	{
 		str = init_prec(str, mod, len);
@@ -61,7 +61,7 @@ int	pf_ptr(va_list ap, t_spec mod)
 {
 	t_ulong	ptr;
 	char	*str;
-	size_t	len;
+	int		len;
 
 	ptr = (t_ulong)va_arg(ap, void *);
 	len = 0;

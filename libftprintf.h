@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 01:32:47 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:25:07 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 typedef struct s_spec
 {
 	t_uchar	flag;
-	size_t	fdwidth;
-	size_t	precision;
+	int		fdwidth;
+	int		precision;
 }			t_spec;
 
 /* Function pointer to call the specifier functions */

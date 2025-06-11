@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:04:02 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 02:58:25 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:40:20 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	pf_altform(t_spec mod, int is_uphex)
 
 /* Zero paddings for field width if there is '0' flag.
  * */
-static void	pf_zeropads(t_spec mod, size_t len)
+static void	pf_zeropads(t_spec mod, int len)
 {
 	if (mod.flag & ZERO_PAD)
 	{
@@ -54,7 +54,7 @@ static void	pf_zeropads(t_spec mod, size_t len)
 
 /* Normal space padding for field width.
  * */
-static void	pf_spacepads(t_spec mod, size_t len)
+static void	pf_spacepads(t_spec mod, int len)
 {
 	if (!(mod.flag & ZERO_PAD))
 	{
@@ -66,7 +66,7 @@ static void	pf_spacepads(t_spec mod, size_t len)
 
 /* Prints digit string to stdout.
  * */
-int	ft_putnbrstr(char *str, size_t len, t_spec mod, int is_uphex)
+int	ft_putnbrstr(char *str, int len, t_spec mod, int is_uphex)
 {
 	if (mod.flag & LEFT_ALIGN)
 	{
@@ -84,5 +84,5 @@ int	ft_putnbrstr(char *str, size_t len, t_spec mod, int is_uphex)
 		pf_zeropads(mod, len);
 		ft_putstr_fd(str, STDOUT_FILENO);
 	}
-	return (free(str), (int)mod.fdwidth);
+	return (free(str), mod.fdwidth);
 }

@@ -6,13 +6,13 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 01:26:06 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:36:12 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static char	*init_prec(char *str, t_spec *mod, size_t *len)
+static char	*init_prec(char *str, t_spec *mod, int *len)
 {
 	char	*tmp;
 
@@ -30,14 +30,14 @@ static char	*init_prec(char *str, t_spec *mod, size_t *len)
 	return (str);
 }
 
-static char	*parse_uint(t_ullong nb, t_spec *mod, size_t *len)
+static char	*parse_uint(t_ullong nb, t_spec *mod, int *len)
 {
 	char	*str;
 
 	str = ft_uitoa(nb);
 	if (!str)
 		return (NULL);
-	*len = ft_strlen(str);
+	*len = (int)ft_strlen(str);
 	if ((mod->flag & HAS_PREC) && (mod->precision > *len))
 	{
 		str = init_prec(str, mod, len);
@@ -55,7 +55,7 @@ int	pf_uint(va_list ap, t_spec mod)
 {
 	t_ullong	nb;
 	char		*str;
-	size_t		len;
+	int			len;
 
 	nb = (t_ullong)va_arg(ap, t_uint);
 	len = 0;

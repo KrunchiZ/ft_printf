@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 15:50:51 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/09 12:44:24 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:30:21 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* If LEFT_ALIGN is on, print str followed by blank spaces up to fdwidth.
  * Else, blank spaces first.
  * */
-static void	exec_pf_string(char *str, size_t len, t_spec mod)
+static void	exec_pf_string(char *str, int len, t_spec mod)
 {
 	if (mod.flag & LEFT_ALIGN)
 	{
@@ -44,18 +44,18 @@ static void	exec_pf_string(char *str, size_t len, t_spec mod)
 int	pf_string(va_list ap, t_spec mod)
 {
 	char	*str;
-	size_t	len;
+	int		len;
 
 	str = va_arg(ap, char *);
 	if (!str && (mod.flag & HAS_PREC) && mod.precision < 6)
 		str = "";
 	else if (!str)
 		str = "(null)";
-	len = ft_strlen(str);
+	len = (int)ft_strlen(str);
 	if ((mod.flag & HAS_PREC) && mod.precision < len)
 		len = mod.precision;
 	if (mod.fdwidth < len)
 		mod.fdwidth = len;
 	exec_pf_string(str, len, mod);
-	return ((int)(mod.fdwidth));
+	return (mod.fdwidth);
 }
