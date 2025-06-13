@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/13 17:03:06 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/13 17:08:52 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,14 @@ static char	*init_prec(char *str, t_spec *mod, int *len)
 	return (str);
 }
 
-static char	*parse_upperhex(t_ullong nb, t_spec *mod, int *len)
+static char	*parse_hex(t_ullong nb, t_spec *mod, int *len)
 {
 	char	*str;
 
-	str = ft_uitoa_base(nb, UPPER_HEX_BASE);
-	if (!str)
-		return (NULL);
-	*len = (int)ft_strlen(str);
-	if ((mod->flag & HAS_PREC) && (mod->precision > *len))
-	{
-		str = init_prec(str, mod, len);
-		if (!str)
-			return (NULL);
-	}
-	if (mod->flag & ALT_FORM)
-		*len += 2;
-	return (str);
-}
-
-static char	*parse_lowerhex(t_ullong nb, t_spec *mod, int *len)
-{
-	char	*str;
-
-	str = ft_uitoa_base(nb, LOWER_HEX_BASE);
+	if (mod->is_uphex)
+		str = ft_uitoa_base(nb, UPPER_HEX_BASE);
+	else
+		str = ft_uitoa_base(nb, LOWER_HEX_BASE);
 	if (!str)
 		return (NULL);
 	*len = (int)ft_strlen(str);
@@ -90,7 +74,7 @@ int	pf_upperhex(va_list ap, t_spec mod)
 		mod.flag &= LEFT_ALIGN;
 	}
 	else
-		str = parse_upperhex(nb, &mod, &len);
+		str = parse_hex(nb, &mod, &len);
 	if (!str)
 		return (-1);
 	if (mod.fdwidth < len)
@@ -119,7 +103,7 @@ int	pf_lowerhex(va_list ap, t_spec mod)
 		mod.flag &= LEFT_ALIGN;
 	}
 	else
-		str = parse_lowerhex(nb, &mod, &len);
+		str = parse_hex(nb, &mod, &len);
 	if (!str)
 		return (-1);
 	if (mod.fdwidth < len)
