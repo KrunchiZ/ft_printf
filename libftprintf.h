@@ -51,7 +51,8 @@ int		pf_char(va_list ap, t_spec mod);
 int		pf_string(va_list ap, t_spec mod);
 int		pf_ptr(va_list ap, t_spec mod);
 int		pf_int(va_list ap, t_spec mod);
-int		pf_hex(va_list ap, t_spec mod);
+int		pf_upperhex(va_list ap, t_spec mod);
+int		pf_lowerhex(va_list ap, t_spec mod);
 int		pf_percent(va_list ap, t_spec mod);
 
 #endif
