@@ -24,8 +24,8 @@ static t_fptr	fetch_pf(const char sp)
 	list['d'] = pf_int;
 	list['i'] = pf_int;
 	list['u'] = pf_int;
-	list['x'] = pf_hex;
-	list['X'] = pf_hex;
+	list['x'] = pf_lowerhex;
+	list['X'] = pf_upperhex;
 	list['%'] = pf_percent;
 	return (list[(int)sp]);
 }
