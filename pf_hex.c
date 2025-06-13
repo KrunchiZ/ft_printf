@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_upperhex.c                                      :+:      :+:    :+:   */
+/*   pf_hex.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 19:25:19 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/13 17:03:06 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,30 @@ static char	*init_prec(char *str, t_spec *mod, int *len)
 	return (str);
 }
 
-static char	*parse_hex(t_ullong nb, t_spec *mod, int *len)
+static char	*parse_upperhex(t_ullong nb, t_spec *mod, int *len)
 {
 	char	*str;
 
 	str = ft_uitoa_base(nb, UPPER_HEX_BASE);
+	if (!str)
+		return (NULL);
+	*len = (int)ft_strlen(str);
+	if ((mod->flag & HAS_PREC) && (mod->precision > *len))
+	{
+		str = init_prec(str, mod, len);
+		if (!str)
+			return (NULL);
+	}
+	if (mod->flag & ALT_FORM)
+		*len += 2;
+	return (str);
+}
+
+static char	*parse_lowerhex(t_ullong nb, t_spec *mod, int *len)
+{
+	char	*str;
+
+	str = ft_uitoa_base(nb, LOWER_HEX_BASE);
 	if (!str)
 		return (NULL);
 	*len = (int)ft_strlen(str);
@@ -71,7 +90,36 @@ int	pf_upperhex(va_list ap, t_spec mod)
 		mod.flag &= LEFT_ALIGN;
 	}
 	else
-		str = parse_hex(nb, &mod, &len);
+		str = parse_upperhex(nb, &mod, &len);
+	if (!str)
+		return (-1);
+	if (mod.fdwidth < len)
+		mod.fdwidth = len;
+	return (ft_putnbrstr(str, len, mod));
+}
+
+/* Prints unsigned hexadecimal in lowercases.
+ * SHOW_SIGN and ADD_SPACE are ignored.
+ * Prints nothing if both nb and precision are 0.
+ * */
+int	pf_lowerhex(va_list ap, t_spec mod)
+{
+	t_ullong	nb;
+	char		*str;
+	int			len;
+
+	nb = (t_ullong)va_arg(ap, t_uint);
+	len = 0;
+	mod.flag &= (~SHOW_SIGN & ~ADD_SPACE);
+	if (!nb)
+		mod.flag &= ~ALT_FORM;
+	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
+	{
+		str = ft_strdup("");
+		mod.flag &= LEFT_ALIGN;
+	}
+	else
+		str = parse_lowerhex(nb, &mod, &len);
 	if (!str)
 		return (-1);
 	if (mod.fdwidth < len)
