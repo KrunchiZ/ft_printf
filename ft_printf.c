@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:47:09 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 17:34:04 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:47:48 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,9 @@ int	ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	len = 0;
-	while (format && *format)
+	if (!format)
+		return (va_end(ap), -1);
+	while (*format)
 	{
 		if (*format != '%')
 		{
