@@ -15,7 +15,7 @@ GREEN	:= \e[32m
 CYAN	:= \e[36m
 WHITE	:= \e[0m
 
-.PHONY: all fclean clean re
+.PHONY: all fclean clean re bonus
 
 all: $(NAME)
 
@@ -43,3 +43,5 @@ clean:
 	@echo "Removing libftprintf object files..."
 
 re: fclean all
+
+bonus: all
