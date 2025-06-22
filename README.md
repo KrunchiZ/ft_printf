@@ -1,4 +1,5 @@
 # ft_printf
+
 A project attempting to replicate the original printf without the buffer.
 
 | Specs                 | Supported                |
