@@ -5,6 +5,7 @@ A project attempting to replicate the original printf without the buffer.
 | --------------------- | :----------------------: |
 | Conversion Specifiers | `cspdiuxX%`              |
 | Flags                 | `#+ -0.`(space included) |
+| Field Width & Precision |
 
 ### Resources
 
