@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 15:50:51 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 17:35:22 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:56:57 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static void	exec_pf_string(char *str, int len, t_spec mod)
  * if str is NULL, prints "(null)" except when precision is present and
  * precision < 6, prints nothing (empty string).
  * */
-int	pf_string(va_list ap, t_spec mod)
+int	pf_string(va_list *ap, t_spec mod)
 {
 	char	*str;
 	int		len;
 
-	str = va_arg(ap, char *);
+	str = va_arg(*ap, char *);
 	if (!str && (mod.flag & HAS_PREC) && mod.precision < 6)
 		str = "";
 	else if (!str)

@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 10:47:09 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/13 15:47:48 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:54:27 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	parse_mod(const char **format, t_spec *mod)
  *
  * Invalid specifier will be treated as a normal string literal.
  * */
-static int	init_pf(const char **format, va_list ap)
+static int	init_pf(const char **format, va_list *ap)
 {
 	t_spec		mod;
 	t_fptr		pf;
@@ -139,7 +139,7 @@ int	ft_printf(const char *format, ...)
 		else
 		{
 			format++;
-			pf_len = init_pf(&format, ap);
+			pf_len = init_pf(&format, &ap);
 			if (pf_len < 0)
 				return (va_end(ap), -1);
 			len += pf_len;

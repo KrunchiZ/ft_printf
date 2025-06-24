@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/13 17:08:52 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:58:05 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ static char	*parse_hex(t_ullong nb, t_spec *mod, int *len)
  * SHOW_SIGN and ADD_SPACE are ignored.
  * Prints nothing if both nb and precision are 0.
  * */
-int	pf_upperhex(va_list ap, t_spec mod)
+int	pf_upperhex(va_list *ap, t_spec mod)
 {
 	t_ullong	nb;
 	char		*str;
 	int			len;
 
-	nb = (t_ullong)va_arg(ap, t_uint);
+	nb = (t_ullong)va_arg(*ap, t_uint);
 	len = 0;
 	mod.is_uphex = 1;
 	mod.flag &= (~SHOW_SIGN & ~ADD_SPACE);
@@ -86,13 +86,13 @@ int	pf_upperhex(va_list ap, t_spec mod)
  * SHOW_SIGN and ADD_SPACE are ignored.
  * Prints nothing if both nb and precision are 0.
  * */
-int	pf_lowerhex(va_list ap, t_spec mod)
+int	pf_lowerhex(va_list *ap, t_spec mod)
 {
 	t_ullong	nb;
 	char		*str;
 	int			len;
 
-	nb = (t_ullong)va_arg(ap, t_uint);
+	nb = (t_ullong)va_arg(*ap, t_uint);
 	len = 0;
 	mod.flag &= (~SHOW_SIGN & ~ADD_SPACE);
 	if (!nb)

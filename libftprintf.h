@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/11 18:27:53 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:51:08 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_spec
 }			t_spec;
 
 /* Function pointer to call the specifier functions */
-typedef int	(*t_fptr)(va_list, t_spec);
+typedef int	(*t_fptr)(va_list *, t_spec);
 
 /* Main Function */
 int		ft_printf(const char *format, ...);
@@ -47,12 +47,12 @@ int		ft_putnbrstr(char *str, int len, t_spec mod);
 
 /* To be called by t_fptr. */
 /* Functions for their respective conversion specifier. */
-int		pf_char(va_list ap, t_spec mod);
-int		pf_string(va_list ap, t_spec mod);
-int		pf_ptr(va_list ap, t_spec mod);
-int		pf_int(va_list ap, t_spec mod);
-int		pf_upperhex(va_list ap, t_spec mod);
-int		pf_lowerhex(va_list ap, t_spec mod);
-int		pf_percent(va_list ap, t_spec mod);
+int		pf_char(va_list *ap, t_spec mod);
+int		pf_string(va_list *ap, t_spec mod);
+int		pf_ptr(va_list *ap, t_spec mod);
+int		pf_int(va_list *ap, t_spec mod);
+int		pf_upperhex(va_list *ap, t_spec mod);
+int		pf_lowerhex(va_list *ap, t_spec mod);
+int		pf_percent(va_list *ap, t_spec mod);
 
 #endif

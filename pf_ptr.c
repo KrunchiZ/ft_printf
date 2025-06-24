@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/12 12:20:20 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:57:18 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ static char	*parse_ptr(t_ulong ptr, t_spec *mod, int *len)
  * Prints nothing if ptr is NULL and precision is 0.
  * Else, print (nil) for NULL.
  * */
-int	pf_ptr(va_list ap, t_spec mod)
+int	pf_ptr(va_list *ap, t_spec mod)
 {
 	t_ullong	ptr;
 	char		*str;
 	int			len;
 
-	ptr = (t_ullong)va_arg(ap, void *);
+	ptr = (t_ullong)va_arg(*ap, void *);
 	len = 0;
 	if (!ptr)
 	{

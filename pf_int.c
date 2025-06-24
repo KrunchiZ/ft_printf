@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 17:34:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/13 16:59:31 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:57:38 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ static char	*parse_int(t_llong nb, t_spec *mod, int *len)
  * SHOW_SIGN, ADD_SPACE and ALT_FORM are ignored.
  * Prints nothing if both nb and precision are 0.
  * */
-int	pf_uint(va_list ap, t_spec mod)
+int	pf_uint(va_list *ap, t_spec mod)
 {
 	t_ullong	nb;
 	char		*str;
 	int			len;
 
-	nb = (t_ullong)va_arg(ap, t_uint);
+	nb = (t_ullong)va_arg(*ap, t_uint);
 	len = 0;
 	mod.flag &= (~SHOW_SIGN & ~ADD_SPACE & ~ALT_FORM);
 	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
@@ -99,13 +99,13 @@ int	pf_uint(va_list ap, t_spec mod)
  * ALT_FORM is ignored.
  * Prints nothing if both nb and precision are 0.
  * */
-int	pf_int(va_list ap, t_spec mod)
+int	pf_int(va_list *ap, t_spec mod)
 {
 	t_llong	nb;
 	char	*str;
 	int		len;
 
-	nb = (t_llong)va_arg(ap, int);
+	nb = (t_llong)va_arg(*ap, int);
 	len = 0;
 	mod.flag &= ~ALT_FORM;
 	if (!nb && ((mod.flag & HAS_PREC) && !(mod.precision)))
