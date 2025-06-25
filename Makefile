@@ -5,7 +5,7 @@ LIBFT		:= $(LIBFT_DIR)/libft.a
 CC		:= cc
 CFLAGS	:= -Wall -Wextra -Werror
 SRCS	:= \
-		   pf_char.c	pf_string.c	pf_int.c		\
+		   pf_char_string.c			pf_int.c		\
 		   pf_ptr.c		pf_hex.c	pf_percent.c	\
 		   ft_printf.c	ft_putnbrstr.c
 
