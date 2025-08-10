@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 13:55:14 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/25 18:12:06 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/08/11 00:43:42 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	pf_string(va_list *ap, t_spec mod)
 	if (!str && (mod.flag & HAS_PREC) && mod.precision < 6)
 		str = "";
 	else if (!str)
-		str = "(null)";
+		str = NULL_STR;
 	len = (int)ft_strlen(str);
 	if ((mod.flag & HAS_PREC) && mod.precision < len)
 		len = mod.precision;

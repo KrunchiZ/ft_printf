@@ -6,7 +6,7 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/06/24 17:51:08 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/08/11 00:41:01 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # define HAS_PREC		0b100000
 # define LOWER_HEX_BASE	"0123456789abcdef"
 # define UPPER_HEX_BASE	"0123456789ABCDEF"
+
+# ifdef __APPLE__
+#  define NULL_STR ""
+#  define NULL_PTR "0x0"
+# else
+#  define NULL_STR "(null)"
+#  define NULL_PTR "(nil)"
+# endif
 
 typedef struct s_spec
 {
