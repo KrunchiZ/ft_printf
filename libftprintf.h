@@ -6,14 +6,13 @@
 /*   By: kchiang <kchiang@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 11:40:41 by kchiang           #+#    #+#             */
-/*   Updated: 2025/08/11 00:41:01 by kchiang          ###   ########.fr       */
+/*   Updated: 2025/10/22 20:08:56 by kchiang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
 
-# include "libft.h"
 # include <stdarg.h>
 
 # define FLAG_SPEC		"-0# +"
@@ -37,12 +36,12 @@
 
 typedef struct s_spec
 {
-	t_uchar	flag;
-	int		fdwidth;
-	int		precision;
-	int		is_neg;
-	int		is_uphex;
-}			t_spec;
+	unsigned char	flag;
+	int				fdwidth;
+	int				precision;
+	int				is_neg;
+	int				is_uphex;
+}					t_spec;
 
 /* Function pointer to call the specifier functions */
 typedef int	(*t_fptr)(va_list *, t_spec);

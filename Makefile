@@ -30,7 +30,7 @@ $(LIBFT):
 	@echo "Copying $(GREEN)$(LIBFT)$(WHITE) -> $(GREEN)./$(NAME)$(WHITE)."
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR)/include -c $< -o $@
 	@echo "Compiling $(CYAN)$@$(WHITE)..."
 
 fclean: clean
