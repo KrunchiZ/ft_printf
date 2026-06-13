@@ -21,26 +21,26 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) 
 	@ar rcs $@ $^
-	@echo "Archiving $(GREEN)$(NAME)$(WHITE)..."
+	@printf "Archiving $(GREEN)$(NAME)$(WHITE)...\n"
 
 $(LIBFT):
-	@echo "Making $(GREEN)$(LIBFT)$(WHITE)..."
+	@printf "Making $(GREEN)$(LIBFT)$(WHITE)...\n"
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT) $(NAME)
-	@echo "Copying $(GREEN)$(LIBFT)$(WHITE) -> $(GREEN)./$(NAME)$(WHITE)."
+	@printf "Copying $(GREEN)$(LIBFT)$(WHITE) -> $(GREEN)./$(NAME)$(WHITE).\n"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I$(LIBFT_DIR)/include -c $< -o $@
-	@echo "Compiling $(CYAN)$@$(WHITE)..."
+	@printf "Compiling $(CYAN)$@$(WHITE)...\n"
 
 fclean: clean
 	@rm -f $(NAME) $(LIBFT)
-	@echo "Removing library files..."
+	@printf "Removing library files...\n"
 
 clean:
 	@make -C $(LIBFT_DIR) clean
 	@rm -f $(OBJS)
-	@echo "Removing libftprintf object files..."
+	@printf "Removing libftprintf object files...\n"
 
 re: fclean all
 
